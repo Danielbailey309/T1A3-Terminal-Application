@@ -26,6 +26,7 @@ rock = Rock.new("Gypsum", "white", "mineral", "none", "none", "white", "2")
 @rock_data_arr.push rock
 rock = Rock.new("Talc", "green", "mineral", "none", "none", "white", "1")
 @rock_data_arr.push rock
+p @rock_data_arr
 
 # Methods
 def identifyrock
