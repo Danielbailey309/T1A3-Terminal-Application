@@ -32,7 +32,7 @@ begin
         raise "That's not a valid selection" unless menu_options.include?(menu)
         if menu == "list"
             puts "The following rocks are in the database:"
-            puts Rock.all_rocks[0].name
+            Rock.all_rocks.each { |rock| puts rock.name }
         end
         if menu == "create"
             Rock.createrock
@@ -44,6 +44,7 @@ begin
             Rock.saverock
         end
         if menu == "collection"
+            puts "You have the following rocks in your collection:"
             puts Rock.rock_collection
         end
     end

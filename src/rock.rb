@@ -34,31 +34,32 @@ class Rock
 
         puts "Is it a rock or a mineral?"
         type_input = gets.chomp
-        identifyarr.filter {|rock| rock.type == type_input }
+        identifyarr.filter! {|rock| rock.type == type_input }
 
         puts "If it is a rock, how is it formed? (rocks can be sedimentary, igneous or metamorphic)"
         formation_input = gets.chomp
-        identifyarr.filter {|rock| rock.formation == formation_input }
+        identifyarr.filter! {|rock| rock.formation == formation_input }
 
         puts "How large is the grain of the rock? (the grain can be coarse, medium or fine)"
         grain_size_input = gets.chomp
-        identifyarr.filter {|rock| rock.grain_size == grain_size_input }
+        identifyarr.filter! {|rock| rock.grain_size == grain_size_input }
 
         puts "What colour streak does the mineral leave whem scraped across paper?"
         streak_input = gets.chomp
-        identifyarr.filter {|rock| rock.streak == streak_input }
+        identifyarr.filter! {|rock| rock.streak == streak_input }
 
         puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
         hardness_input = gets.chomp
-        identifyarr.filter {|rock| rock.hardness == hardness_input }
+        identifyarr.filter! {|rock| rock.hardness == hardness_input }
 
         puts "Your rock is one of the following:"
         identifyarr.each { |rock| puts rock.name }
     end
 
     # When the user types "save" in the menu, this method will save the rock to the user's collection
-    def saverock
+    def self.saverock
         rock_collection_temp_arr = []
+        puts "What is the name of the rock you want to add to your collection?"
         save_input = gets.chomp.capitalize
         @@rock_arr.each do |rock|
             if save_input == rock.name
@@ -87,6 +88,6 @@ class Rock
         puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
         hardness = gets.chomp
         Rock.new(name, colour, type, formation, grain_size, streak, hardness)
-        puts Rock.all_rocks
+        Rock.all_rocks.each { |rock| puts rock.name }
     end
 end
