@@ -2,6 +2,7 @@ require_relative 'rock'
 
 # Creating variables
 menu = 
+menu_options = ["list", "identify", "create", "save", "collection", "quit"]
 @rock_data_arr = []
 @rock_collection_arr = []
 
@@ -26,9 +27,9 @@ rock = Rock.new("Gypsum", "white", "mineral", "none", "none", "white", "2")
 @rock_data_arr.push rock
 rock = Rock.new("Talc", "green", "mineral", "none", "none", "white", "1")
 @rock_data_arr.push rock
-p @rock_data_arr
 
 # Methods
+    # When the user types "identify" in the menu, this method will ask the user a series of questions to find out which rock it is
 def identifyrock
     identifyarr = []
     puts "What colour is the rock?"
@@ -73,9 +74,11 @@ def identifyrock
             identifyarr.delete rock.name
         end
     end
+    puts "Your rock is one of the following:"
     puts identifyarr
 end
 
+# When the user types "save" in the menu, this method will save the rock to the user's collection
 def saverock
     save_input = gets.chomp
     @rock_data_arr.each do |rock|
@@ -85,6 +88,8 @@ def saverock
     end
 end
 
+# When the user types "create" in the menu, this method will ask a series of questions about the rock and then
+# add a rock to the database with the specifications entered
 def createrock
     puts "What is the name of the rock?"
     name = gets.chomp
@@ -104,20 +109,22 @@ def createrock
     @rock_data_arr.push rock
 end
 
+# Main program. Essentially asks the user what they want to do, and then runs the method associated with that command
 while menu != "quit"
     puts "Please enter a command"
-    puts "Available commands are: list, identify, update, save or collection"
+    puts "Available commands are:"
+    puts menu_options
     menu = gets.chomp.downcase
-    if menu == "update"
-        createrock
-        puts Rock.all_rocks
-    end
     if menu == "list"
         puts "The following rocks are in the database:"
         puts Rock.all_rocks
     end
     if menu == "identify"
         identifyrock
+    end
+    if menu == "create"
+        createrock
+        puts Rock.all_rocks
     end
     if menu == "save"
         saverock
