@@ -1,6 +1,7 @@
 class Rock
     attr_reader :name, :colour, :type, :formation, :grain_size, :streak, :hardness
-    @@rock_name_arr = []
+    @@rock_arr = []
+    @@rock_collection_arr = []
     def initialize(name, colour, type, formation, grain_size, streak, hardness)
         @name = name
         @colour = colour
@@ -9,9 +10,83 @@ class Rock
         @grain_size = grain_size
         @streak = streak
         @hardness = hardness
-        @@rock_name_arr.push name
+        @@rock_arr.push(self)
     end
+    
     def self.all_rocks
-        return @@rock_name_arr
+        return @@rock_arr
+    end
+    
+    def self.rock_collection
+        return @@rock_collection_arr
+    end
+
+    # When the user types "identify" in the menu, this method will ask the user a series of questions to find out which rock it is
+    def self.identifyrock
+        identifyarr = []
+        puts "What colour is the rock?"
+        colour_input = gets.chomp
+        @@rock_arr.each do |rock|
+            if colour_input == rock.colour
+                identifyarr.push rock
+            end
+        end
+
+        puts "Is it a rock or a mineral?"
+        type_input = gets.chomp
+        identifyarr.filter {|rock| rock.type == type_input }
+
+        puts "If it is a rock, how is it formed? (rocks can be sedimentary, igneous or metamorphic)"
+        formation_input = gets.chomp
+        identifyarr.filter {|rock| rock.formation == formation_input }
+
+        puts "How large is the grain of the rock? (the grain can be coarse, medium or fine)"
+        grain_size_input = gets.chomp
+        identifyarr.filter {|rock| rock.grain_size == grain_size_input }
+
+        puts "What colour streak does the mineral leave whem scraped across paper?"
+        streak_input = gets.chomp
+        identifyarr.filter {|rock| rock.streak == streak_input }
+
+        puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
+        hardness_input = gets.chomp
+        identifyarr.filter {|rock| rock.hardness == hardness_input }
+
+        puts "Your rock is one of the following:"
+        identifyarr.each { |rock| puts rock.name }
+    end
+
+    # When the user types "save" in the menu, this method will save the rock to the user's collection
+    def saverock
+        rock_collection_temp_arr = []
+        save_input = gets.chomp.capitalize
+        @@rock_arr.each do |rock|
+            if save_input == rock.name
+                rock_collection_temp_arr.push rock.name
+            end
+        end
+        raise "That rock is not in the database" if rock_collection_temp_arr == []
+        @@rock_collection_arr.push rock_collection_temp_arr
+    end
+
+    # When the user types "create" in the menu, this method will ask a series of questions about the rock and
+    # then add a rock to the database with the specifications entered
+    def self.createrock
+        puts "What is the name of the rock?"
+        name = gets.chomp.capitalize
+        puts "What colour is the rock?"
+        colour = gets.chomp
+        puts "Is it a rock or a mineral?"
+        type = gets.chomp
+        puts "If it is a rock, how is it formed? (rocks can be sedimentary, igneous or metamorphic)"
+        formation = gets.chomp
+        puts "How large is the grain of the rock? (the grain can be coarse, medium or fine)"
+        grain_size = gets.chomp
+        puts "What colour streak does the mineral leave whem scraped across paper?"
+        streak = gets.chomp
+        puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
+        hardness = gets.chomp
+        Rock.new(name, colour, type, formation, grain_size, streak, hardness)
+        puts Rock.all_rocks
     end
 end

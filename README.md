@@ -73,3 +73,6 @@ In pseudocode:
 As above, the user will also be able to import or export their collection of rocks.
 
 Also as above, the user will be prompted to retry if they input the incorrect data type for the rock's name. If the rock isn't in the database, the user will be prompted to reenter their input or add the rock to the database.
+
+### Outline of user interaction
+When the application is started, all of the options available to the user are listed individually, as well as what each option does. By typing in one of these options, the user can access the associated feature of the program. These features will each guide the user step-by-step through how to use the feature.
