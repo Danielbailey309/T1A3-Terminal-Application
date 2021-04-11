@@ -90,11 +90,13 @@ class Rock
         puts "Is it a rock or a mineral?".colorize :blue
         type = gets.chomp
         
-        puts "If it is a rock, how is it formed? (rocks can be sedimentary, igneous or metamorphic)".colorize :blue
-        formation = gets.chomp
+        question = "If it is a rock, how is it formed?".colorize :blue
+        choices = ["sedimentary", "igneous", "metamorhic"]
+        formation = @@prompt.select(question, choices)
         
-        puts "How large is the grain of the rock? (the grain can be coarse, medium or fine)".colorize :blue
-        grain_size = gets.chomp
+        question = "How large is the grain of the rock?".colorize :blue
+        choices = ["coarse", "medium", "fine"]
+        grain_size = @@prompt.select(question, choices)
         
         puts "What colour streak does the mineral leave whem scraped across paper?".colorize :blue
         streak = gets.chomp

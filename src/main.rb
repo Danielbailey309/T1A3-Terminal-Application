@@ -29,9 +29,9 @@ begin
         choices = {
             "List all rocks currently in the database": 1,
             "Add a new rock to the database": 2,
-            "Identify a rock that you've found": 3,
-            "Save a rock from the database to your collection": 4,
-            "View your collection": 5,
+            "Identify a rock that I've found": 3,
+            "Save a rock from the database to my collection": 4,
+            "View my collection": 5,
             "Exit the application": 6
         }
         menu = prompt.select(question, choices, per_page: 6)
