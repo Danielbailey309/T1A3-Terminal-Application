@@ -58,7 +58,7 @@ class Rock
         raise "That is not a valid hardness (must be between 1 and 10)" if hardness_input.to_i < 1 or hardness_input.to_i > 10
         identifyarr.filter! {|rock| rock.hardness == hardness_input }
 
-        raise "That rock is not in the database" if identifyarr == []
+        raise "That rock is not in the database. You can add a new rock to the database by selecting that option from the main menu." if identifyarr == []
         puts "Your rock is one of the following:".colorize :green
         identifyarr.each { |rock| puts rock.name }
     end
@@ -73,7 +73,7 @@ class Rock
                 rock_collection_temp_arr.push rock.name
             end
         end
-        raise "That rock is not in the database" if rock_collection_temp_arr == []
+        raise "That rock is not in the database. You can add a new rock to the database by selecting that option from the main menu." if rock_collection_temp_arr == []
         @@rock_collection_arr.push rock_collection_temp_arr
     end
 
