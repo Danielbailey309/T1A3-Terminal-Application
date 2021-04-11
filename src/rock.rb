@@ -50,6 +50,7 @@ class Rock
 
         puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
         hardness_input = gets.chomp
+        raise "That is not a valid hardness (must be between 1 and 10)" if hardness_input.to_i < 1 or hardness_input.to_i > 10
         identifyarr.filter! {|rock| rock.hardness == hardness_input }
 
         puts "Your rock is one of the following:"
@@ -73,20 +74,29 @@ class Rock
     # When the user types "create" in the menu, this method will ask a series of questions about the rock and
     # then add a rock to the database with the specifications entered
     def self.createrock
+
         puts "What is the name of the rock?"
         name = gets.chomp.capitalize
+        
         puts "What colour is the rock?"
         colour = gets.chomp
+        
         puts "Is it a rock or a mineral?"
         type = gets.chomp
+        
         puts "If it is a rock, how is it formed? (rocks can be sedimentary, igneous or metamorphic)"
         formation = gets.chomp
+        
         puts "How large is the grain of the rock? (the grain can be coarse, medium or fine)"
         grain_size = gets.chomp
+        
         puts "What colour streak does the mineral leave whem scraped across paper?"
         streak = gets.chomp
+        
         puts "What is the hardness of the rock or mineral, on a scale of 1 to 10?"
         hardness = gets.chomp
+        raise "That is not a valid hardness (must be between 1 and 10)" if hardness.to_i < 1 or hardness.to_i > 10
+        
         Rock.new(name, colour, type, formation, grain_size, streak, hardness)
         Rock.all_rocks.each { |rock| puts rock.name }
     end

@@ -48,4 +48,6 @@ begin
             puts Rock.rock_collection
         end
     end
+rescue Exception => e
+    puts "An error occurred: #{e}"
 end
