@@ -22,6 +22,8 @@ Rock.new("Talc", "green", "mineral", "none", "none", "white", "1")
 Rock.new("Schist", "grey", "rock", "metamorphic", "large", "none", "4")
 Rock.new("Shale", "black", "rock", "sedimentary", "fine", "none", "3")
 
+# Method for help display, both when running the application and
+# using the argument "--help"
 def gethelp
     puts "Welcome to my application!
 If you're looking to start your own collection of rocks and minerals, then this is the application for you! 
@@ -35,11 +37,14 @@ Choosing 'Get help' will display this message again.
 Finally, choosing 'Exit' will quit the application"
 end
 
+# Display help message if "--help" is used as 
+# an argument on "install_script.sh"
 if ARGV.include? "--help"
     gethelp
-    exit
 end
-# Main program. Essentially asks the user what they want to do, and then runs the method associated with that command
+
+# Main program. Essentially asks the user what they want to 
+# do, and then runs the method associated with that command
 begin
     while menu != 7
         question = "What would you like to do?".colorize :blue

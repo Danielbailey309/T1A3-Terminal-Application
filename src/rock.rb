@@ -24,7 +24,8 @@ class Rock
         return @@rock_collection_arr
     end
 
-    # When the user types "identify" in the menu, this method will ask the user a series of questions to find out which rock it is
+    # When the user types "identify" in the menu, this method will 
+    # ask the user a series of questions to find out which rock it is
     def self.identifyrock
         identifyarr = []
         puts "What colour is the rock?".colorize :blue

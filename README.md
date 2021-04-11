@@ -117,11 +117,27 @@ Due to technical reasons, the rest of my user stories can be viewed here:
 
 #### Steps for installation
 
-To install the program, simply navigate to DanielBailey_T1A3/src and enter "./install_script.sh" without quotes. The program should run automatically after installing
+To install the program, simply navigate to DanielBailey_T1A3/src and enter
+
+    ./install_script.sh
+
+into the terminal. After this, the program can be run by entering 
+
+    ruby main.rb
+
+into the terminal. If help is required on program usage, the argument
+
+    --help
+
+can be added onto the run command.
+
+Therefore, to run the program with help, it should look like this:
+
+    ruby main.rb --help
 
 #### Dependencies
 
-This program requires the gems "colorize" and "tty-prompt" to run. The program should automatically install these when it is run.
+This program requires the gems "colorize" and "tty-prompt" to run. The program should automatically install these if the installation instructions are followed correctly.
 
 #### System requirements
 
