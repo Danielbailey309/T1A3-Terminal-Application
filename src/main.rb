@@ -4,8 +4,9 @@ require 'colorize'
 require 'tty-prompt'
 
 # Creating variables
+prompt = TTY::Prompt.new
 menu = 
-menu_options = ["list", "identify", "create", "save", "collection", "quit"]
+menu_options = [1..6]
 
 # Adding default rocks to database
 Rock.new("Diamond", "colourless", "mineral", "none", "none", "colourless", "10")
@@ -26,15 +27,15 @@ begin
     while menu != 6
         question = "What would you like to do?".colorize :blue
         choices = {
-            "List all rocks currently in the database" => 1,
-            "Add a new rock to the database" => 2,
-            "Identify a new rock that you've found" => 3
-            "Save a rock from the database to your collection" => 4,
-            "View your collection" => 5,
-            "Exit the application" => 6
+            "List all rocks currently in the database": 1,
+            "Add a new rock to the database": 2,
+            "Identify a rock that you've found": 3,
+            "Save a rock from the database to your collection": 4,
+            "View your collection": 5,
+            "Exit the application": 6
         }
-        menu = @@prompt.select(question, choices)
-        raise "That's not a valid selection" unless choices.include?(menu)
+        menu = prompt.select(question, choices, per_page: 6)
+        raise "That's not a valid selection" unless menu_options.include?(1..6)
         if menu == 1
             puts "The following rocks are in the database:"
             Rock.all_rocks.each { |rock| puts rock.name }
